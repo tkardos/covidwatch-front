@@ -14,6 +14,7 @@ function Home() {
   // atmenetileg itt teszteltem a fetchet, a submit-ot kovetoen
 
   function mySubmit(e) {
+    // e.target[0].value = the country code
     e.preventDefault();
     console.log(e.target[0].value)
     return;
@@ -28,15 +29,18 @@ function Home() {
         <Row>
           <Col md={6} style={{ backgroundColor: "pink", height: 200 }}>
             <Form className="mt-3" onSubmit={mySubmit}>
-              <Form.Group controlId="selectCountry">
+              <Form.Group>
 
                 <Form.Label className="mb-3"> Select a country </Form.Label>
                 <Row>
                   <Col md={9} >
                     <Form.Control as="select">
-                      {/* e.target[0].value = the country code */}
                       {items.map(item => {
-                        return <option key={item.CountryCode} value={item.CountryCode}> {item.Country} </option>
+                        let selected = '';
+                        if (item.CountryCode === 'HU') {
+                          selected = "selected"
+                        }
+                        return <option selected={selected} key={item.CountryCode} value={item.CountryCode}> {item.Country} </option>
                       })}
                     </Form.Control>
                   </Col>
@@ -45,6 +49,7 @@ function Home() {
                   </Col>
                 </Row>
               </Form.Group>
+
             </Form>
           </Col>
 
