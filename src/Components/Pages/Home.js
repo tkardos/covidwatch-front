@@ -3,22 +3,19 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import hostname from '../Functions/Hostname';
 
 function Home() {
-  const [summaryData, setSummaryData] = useState([]);
+  const [items, setItems] = useState([]);
 
-  async function summaryList() {
-    const url = hostname.back;
-    const fetchResponse = await fetch(`${url}/api/summary`)
-    const sumData = await fetchResponse.json();
-    setSummaryData(sumData)
-    return sumData;
-  }
+  useEffect(() => {
+    fetch(`${hostname.back}/api/summary`)
+    .then(response => response.json())
+    .then(json => setItems(json))
+  }, [])
   
   // atmenetileg itt teszteltem a fetchet, a submit-ot kovetoen
 
   function mySubmit(e) {
     e.preventDefault();
-    summaryList()
-    console.log(summaryData[0]);
+    console.log(e.target[0].value)
     return;
   }
 
@@ -37,8 +34,10 @@ function Home() {
                 <Row>
                   <Col md={9} >
                     <Form.Control as="select">
-                      <option>1</option>
-                      <option>2</option>
+                      {/* e.target[0].value = the country code */}
+                      {items.map(item => {
+                        return <option key={item.CountryCode} value={item.CountryCode}> {item.Country} </option>
+                      })}
                     </Form.Control>
                   </Col>
                   <Col md={3}>
