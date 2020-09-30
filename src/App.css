@@ -1,3 +1,8 @@
+:root {
+  --basicred: rgba(247, 70, 74, 0.5);
+  --basicblue: #557a95;
+}
+
 .App {
   text-align: center;
 }
