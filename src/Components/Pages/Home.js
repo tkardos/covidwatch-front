@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import hostname from "../Functions/Hostname";
 import PieChart from "../Elements/PieChart";
+import BubbleChart from '../Elements/BubbleChart';
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -103,6 +104,23 @@ function Home() {
           </Col>
         </Row>
       </Container>
+      <BubbleChart
+          keys={
+            countryData
+                ? ["New confirmed", "New deaths", "New recovered"]
+                : ""
+          }
+          values={
+            countryData
+                ? [
+                  countryData.NewConfirmed,
+                  countryData.NewDeaths,
+                  countryData.NewRecovered,
+                ]
+                : []
+          }
+          name="Daily Covid Data"
+      ></BubbleChart>
     </div>
   );
 }
