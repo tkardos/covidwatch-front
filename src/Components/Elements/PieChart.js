@@ -11,20 +11,14 @@ function PieChart({keys, values, name}) {
         {
           data: [values[0], values[1], values[2]],
           backgroundColor: [
-            "#F7464A",
             "#46BFBD",
-            "#FDB45C"
-            // "#949FB1",
-            // "#4D5360",
-            // "#AC64AD"
+            "#FDB45C",
+            "#F7464A"
           ],
           hoverBackgroundColor: [
-            "#FF5A5E",
             "#5AD3D1",
-            "#FFC870"
-            // "#A8B3C5",
-            // "#616774",
-            // "#DA92DB"
+            "#FFC870",
+            "#FF5A5E"
           ]
         }
       ]

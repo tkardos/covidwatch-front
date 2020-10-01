@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import hostname from "../Functions/Hostname";
 import PieChart from "../Elements/PieChart";
+import BarChart from "../Elements/BarChart";
 
 function Home() {
   const [items, setItems] = useState([]);
@@ -79,20 +80,48 @@ function Home() {
               <PieChart
                 keys={
                   countryData
-                    ? ["New confirmed", "New deaths", "New recovered"]
+                    ? ["New recovered", "New confirmed", "New deaths"]
                     : ""
                 }
                 values={
                   countryData
                     ? [
-                        countryData.NewConfirmed,
-                        countryData.NewDeaths,
-                        countryData.NewRecovered,
-                      ]
+                      countryData.NewRecovered,
+                      countryData.NewConfirmed,
+                      countryData.NewDeaths
+                    ]
                     : []
                 }
                 name="Daily Covid Data"
               ></PieChart>
+              <p className="mt-3">
+                {" "}
+                {countryData
+                  ? countryData.Date.replace("T", " ").replace("Z", " ")
+                  : ""}{" "}
+              </p>
+            </div>
+          </Col>
+
+          <Col md={6} style={{ backgroundColor: "lightblue" }}>
+            <div className="m-3">
+              <BarChart
+                keys={
+                  countryData
+                    ? ["Total recovered", "Total confirmed", "Total deaths"]
+                    : ""
+                }
+                values={
+                  countryData
+                    ? [
+                      countryData.TotalRecovered,
+                      countryData.TotalConfirmed,
+                      countryData.TotalDeaths
+                    ]
+                    : []
+                }
+                name="Total Covid Data by Country"
+              ></BarChart>
               <p className="mt-3">
                 {" "}
                 {countryData
