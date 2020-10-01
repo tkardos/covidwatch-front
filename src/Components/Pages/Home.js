@@ -30,27 +30,28 @@ function Home() {
   function led(e) {
     e.preventDefault();
     if (countryData) {
-      setLedButton('d-none');
-      try {
-        fetch(`${hostname.back}/api/country`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(
-            {
-              "recovered": countryData.TotalRecovered,
-              "confirmed": countryData.TotalConfirmed,
-              "deaths": countryData.TotalDeaths
-            })
-        })
-          .then((response) => response.json())
-          .then((json) => {            
-            console.log(json)
-            setLedButton('default');
-            return;
-          });
-      } catch (error) {
-        console.log(error)
-      }
+      setTimeout(() => '', 5000)
+        setLedButton('d-none');
+        try {
+          fetch(`${hostname.back}/api/country`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+              {
+                "recovered": countryData.TotalRecovered,
+                "confirmed": countryData.TotalConfirmed,
+                "deaths": countryData.TotalDeaths
+              })
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              console.log(json)
+              setLedButton('default');
+              return;
+            });
+        } catch (error) {
+          console.log(error)
+        }
     }
   }
 
