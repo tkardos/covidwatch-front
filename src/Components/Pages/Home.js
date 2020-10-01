@@ -30,8 +30,8 @@ function Home() {
   function led(e) {
     e.preventDefault();
     if (countryData) {
-      setTimeout(() => '', 5000)
-        setLedButton('d-none');
+      setLedButton('d-none');
+      setTimeout(() => {
         try {
           fetch(`${hostname.back}/api/country`, {
             method: 'POST',
@@ -52,6 +52,7 @@ function Home() {
         } catch (error) {
           console.log(error)
         }
+      }, 3000)
     }
   }
 
