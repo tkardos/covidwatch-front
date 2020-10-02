@@ -1,14 +1,14 @@
 import React from "react";
 import PieChart from "./PieChart";
 
-function GlobalPieChart({recovered, confirmed, deaths, scope, country, date}) {
+function GlobalPieChart({recovered, active, deaths, scope, country, date}) {
 
   return (
 
     <div className="m-3">
       <PieChart
-        keys={[scope + ' recovered', scope + ' confirmed', scope + ' deaths']}
-        values={[recovered, confirmed, deaths]} 
+        keys={[scope + ' recovered', scope + ' active', scope + ' deaths']}
+        values={[recovered, active, deaths]} 
         name={scope +' Covid Data'+ (country ? ': ' + country : '')}>
         </PieChart>
       <p className="mt-3">

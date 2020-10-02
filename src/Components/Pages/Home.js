@@ -45,6 +45,7 @@ function Home() {
     e.preventDefault();
     if (countryData) {
       setLedButton('d-none');
+      let sendActive = countryData.TotalConfirmed - (countryData.TotalRecovered + countryData.TotalDeaths)
       setTimeout(() => {
         try {
           fetch(`${hostname.back}/api/country`, {
@@ -53,7 +54,7 @@ function Home() {
             body: JSON.stringify(
               {
                 "recovered": countryData.TotalRecovered,
-                "confirmed": countryData.TotalConfirmed,
+                "confirmed": sendActive,
                 "deaths": countryData.TotalDeaths
               })
           })
@@ -72,10 +73,10 @@ function Home() {
 
   return (
     <div>
-      <h1 className="h2 mt-5"> Covid Watch 1.0 </h1>
+      <h3 className="h2 mt-5"> Covid Watch 1.0 </h3>
 
       <Container fluid style={{ width: "90%" }}>
-        <div className="mb-5" style={{ padding: 25 }} />
+        <div className="mb-5" style={{ padding: 5 }} />
         <Row className="justify-content-md-center">
           <Col
             md={6}
@@ -132,7 +133,7 @@ function Home() {
             <GlobalPieChart
               scope="Total"
               recovered={countryData ? countryData.TotalRecovered : ''}
-              confirmed={countryData ? countryData.TotalConfirmed : ''}
+              active={countryData ? (countryData.TotalConfirmed-(countryData.TotalRecovered+countryData.TotalDeaths)) : ''}
               deaths={countryData ? countryData.TotalDeaths : ''}
               country={countryData ? countryData.Country : ''}
               date={countryData ? countryData.Date : ''}
@@ -155,8 +156,8 @@ function Home() {
           <Col md={5} className={globalButton} style={{ backgroundColor: "lightgrey", borderRadius: "25px", margin: "10px" }}>
             <GlobalPieChart
               scope="Total"
-              recovered={globalData.TotalConfirmed}
-              confirmed={globalData.TotalRecovered}
+              recovered={globalData.TotalRecovered}
+              active={(globalData.TotalConfirmed - (globalData.TotalRecovered + globalData.TotalDeaths))}
               deaths={globalData.TotalDeaths}
               country="Global"
             />
@@ -165,8 +166,8 @@ function Home() {
           <Col md={5} className={globalButton} style={{ backgroundColor: "lightgrey", borderRadius: "25px", margin: "10px" }}>
             <GlobalBarChart
               scope="Daily"
-              recovered={globalData.NewConfirmed}
-              confirmed={globalData.NewRecovered}
+              recovered={globalData.NewRecovered}
+              confirmed={globalData.NewConfirmed}
               deaths={globalData.NewDeaths}
               country="Global"
             />
