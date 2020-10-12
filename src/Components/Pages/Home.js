@@ -85,7 +85,7 @@ function Home() {
           >
             <Form className="mt-3" onSubmit={mySubmit}>
               <Form.Group>
-                <Form.Label className="mb-3 h5"> Select a country </Form.Label>
+                <Form.Label className="mb-3 h5 nameSize"> Select a country </Form.Label>
                 <Row style={{ borderRadius: "25px" }}>
                   <Col md={9}>
                     <Form.Control as="select" className="m-2">
