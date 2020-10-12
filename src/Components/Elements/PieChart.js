@@ -27,7 +27,7 @@ function PieChart({keys, values, name}) {
 
   return (
     <MDBContainer>
-      <h5 className="mt-3"> {name} </h5>
+      <h5 className="mt-3 nameSize"> {name} </h5>
       <Pie data={state.dataPie} options={{ responsive: true }} />
     </MDBContainer>
   );

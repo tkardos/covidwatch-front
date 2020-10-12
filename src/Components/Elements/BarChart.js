@@ -54,7 +54,7 @@ function PolarChart({keys, values, name}) {
 
   return (
     <MDBContainer>
-      <h5 className="mt-3"> {name} </h5>
+      <h5 className="mt-3 nameSize"> {name} </h5>
       <Bar data={state.dataBar} options={{ responsive: true }} />
     </MDBContainer>
   );
